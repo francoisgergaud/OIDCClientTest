@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User information</title>
+    <script src="scripts/jquery-3.6.0.min.js"></script>
+    <script>
+        function fetchUserInfo() {
+            $.ajax({
+                "url" : "/userInfo",
+                "type" : "GET",
+                "success" : function(data) {
+                    $("#userInfo").html(JSON.stringify(data, undefined, 2));
+                },
+                "error" : function(request,error) {
+                    $("#userInfo").html("error: " + error);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <button onclick="fetchUserInfo();return false;">get user information (ajax)</button>
+    <div id="userInfo"></div>
+    <a href="/logout">logout</a>
+</body>
+</html>
